@@ -3,9 +3,11 @@ import { Grid } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import EventList from "../EventList/EventList";
 import {createEvent, updateEvent, deleteEvent} from "../eventActions";
+import SpinnerComponent from "../../../app/layout/SpinnerComponent";
 
 const mapStateToProps = (state) => ({
-  events: state.events
+  events: state.events,
+  loading: state.async.loading
 });
 
 const actions = {
@@ -21,7 +23,8 @@ class EventDashboard extends React.Component {
   };
 
   render() {
-    const {events} = this.props;
+    const {events, loading} = this.props;
+    if (loading) return <SpinnerComponent />;
     return (
       <Grid>
         <Grid.Column width={10}>

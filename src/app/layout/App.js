@@ -11,6 +11,7 @@ import SettingsDashboard from "../../features/user/Settings/SettingsDashboard";
 import EventForm from "../../features/event/EventForm/EventForm";
 import ModalManager from "../../features/modals/ModalManager";
 
+
 class App extends React.Component {
   render() {
     return (

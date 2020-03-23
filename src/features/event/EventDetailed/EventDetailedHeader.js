@@ -1,6 +1,7 @@
 import React from 'react';
 import {Segment, Image, Item, Header, Button} from "semantic-ui-react";
 import {Link} from "react-router-dom";
+import {format} from 'date-fns';
 
 const eventImageStyle = {
   filter: 'brightness(0.35)'
@@ -18,8 +19,8 @@ const eventImageTextStyle = {
 const EventDetailedHeader = ({event}) => {
   return (
     <Segment.Group>
-      <Segment basic attached="top" style={{ padding: '0' }}>
-        <Image src={`/assets/categoryImages/${event.category}.jpg`} fluid style={eventImageStyle} />
+      <Segment basic attached="top" style={{padding: '0'}}>
+        <Image src={`/assets/categoryImages/${event.category}.jpg`} fluid style={eventImageStyle}/>
 
         <Segment basic style={eventImageTextStyle}>
           <Item.Group>
@@ -28,9 +29,9 @@ const EventDetailedHeader = ({event}) => {
                 <Header
                   size="huge"
                   content={event.title}
-                  style={{ color: 'white' }}
+                  style={{color: 'white'}}
                 />
-                <p>{event.date}</p>
+                <p>{event.date && format(event.date.toDate(), 'EEEE do LLLL')}</p>
                 <p>
                   Hosted by <strong>{event.hostedBy}</strong>
                 </p>

@@ -4,9 +4,11 @@ import {connect} from 'react-redux';
 import EventList from "../EventList/EventList";
 import {createEvent, updateEvent, deleteEvent} from "../eventActions";
 import SpinnerComponent from "../../../app/layout/SpinnerComponent";
+import EventActivity from "../EventActivity/EventActivity";
+import {firestoreConnect} from "react-redux-firebase";
 
 const mapStateToProps = (state) => ({
-  events: state.events,
+  events: state.firestore.ordered.events,
   loading: state.async.loading
 });
 
@@ -34,11 +36,11 @@ class EventDashboard extends React.Component {
           />
         </Grid.Column>
         <Grid.Column width={6}>
-          <h2>Activity feed</h2>
+          <EventActivity />
         </Grid.Column>
       </Grid>
     );
   }
 }
 
-export default connect(mapStateToProps, actions)(EventDashboard);
+export default connect(mapStateToProps, actions)(firestoreConnect([{collection: 'events'}])(EventDashboard));

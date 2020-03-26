@@ -12,9 +12,9 @@ const UserDetailedDescription = ({profile}) => {
         <Segment>
           <Grid columns={2}>
             <Grid.Column width={10}>
-              <Header icon='smile' content='About Display Name' />
-              <p>I am a <strong>{profile.occupation || ''}</strong> </p>
-              <p>Originally from <strong>{profile.origin || ''}</strong></p>
+              <Header icon='smile' content={`About ${profile.displayName}`} />
+              <p>I am a <strong>{profile.occupation || ' '}</strong> </p>
+              <p>Originally from <strong>{profile.origin || ' '}</strong></p>
               <p>Member since: <strong>{createdAt}</strong></p>
               <p>{profile.description}</p>
             </Grid.Column>

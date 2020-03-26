@@ -5,11 +5,11 @@ import EventList from "../EventList/EventList";
 import {createEvent, updateEvent} from "../eventActions";
 import SpinnerComponent from "../../../app/layout/SpinnerComponent";
 import EventActivity from "../EventActivity/EventActivity";
-import {firestoreConnect} from "react-redux-firebase";
+import {firestoreConnect, isLoaded} from "react-redux-firebase";
 
 const mapStateToProps = (state) => ({
   events: state.firestore.ordered.events,
-  loading: state.async.loading
+
 });
 
 const actions = {
@@ -25,7 +25,7 @@ class EventDashboard extends React.Component {
 
   render() {
     const {events, loading} = this.props;
-    if (loading) return <SpinnerComponent />;
+    if (!isLoaded(events)) return <SpinnerComponent />;
     return (
       <Grid>
         <Grid.Column width={10}>

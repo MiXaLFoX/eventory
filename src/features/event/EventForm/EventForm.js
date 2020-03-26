@@ -9,7 +9,6 @@ import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
 import DateInput from "../../../app/common/form/DateInput";
-import {toastr} from "react-redux-toastr";
 
 const mapStateToProps = (state, ownProps) => {
   const eventId = ownProps.match.params.id;

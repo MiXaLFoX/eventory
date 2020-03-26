@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import EventList from "../EventList/EventList";
-import {createEvent, updateEvent, deleteEvent} from "../eventActions";
+import {createEvent, updateEvent} from "../eventActions";
 import SpinnerComponent from "../../../app/layout/SpinnerComponent";
 import EventActivity from "../EventActivity/EventActivity";
 import {firestoreConnect} from "react-redux-firebase";
@@ -14,8 +14,7 @@ const mapStateToProps = (state) => ({
 
 const actions = {
   createEvent,
-  updateEvent,
-  deleteEvent
+  updateEvent
 };
 
 class EventDashboard extends React.Component {

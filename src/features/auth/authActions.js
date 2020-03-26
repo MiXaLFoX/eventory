@@ -1,4 +1,5 @@
-import { SubmissionError } from "redux-form";
+import {SubmissionError, reset} from "redux-form";
+import {toastr} from "react-redux-toastr";
 import {closeModal} from "../modals/modalActions";
 
 export const login = (credentials) => {
@@ -33,3 +34,18 @@ export const registerUser = (user) => async (dispatch, getState, {getFirebase, g
     throw new SubmissionError({_error: error.message})
   }
 };
+
+export const updatePassword = (credentials) =>
+  async (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase();
+    const user = firebase.auth().currentUser;
+    try {
+      await user.updatePassword(credentials.newPassword1);
+      await dispatch(reset('account'));
+      toastr.success('Success', 'Password has been changed');
+    } catch (error) {
+      throw new SubmissionError({
+        _error: error.message
+      })
+    }
+  };

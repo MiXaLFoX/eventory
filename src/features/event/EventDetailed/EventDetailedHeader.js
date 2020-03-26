@@ -16,7 +16,7 @@ const eventImageTextStyle = {
   color: 'white'
 };
 
-const EventDetailedHeader = ({event}) => {
+const EventDetailedHeader = ({event, isHost, isGoing, signUpToEvent, cancelSignUpToEvent}) => {
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{padding: '0'}}>
@@ -32,8 +32,10 @@ const EventDetailedHeader = ({event}) => {
                   style={{color: 'white'}}
                 />
                 <p>{event.date && format(event.date.toDate(), 'EEEE do LLLL')}</p>
-                <p>
-                  Hosted by <strong>{event.hostedBy}</strong>
+                <p> Hosted by
+                  <strong>
+                    <Link to={`/profile/${event.hostUid}`} style={{color: 'white'}}> {event.hostedBy}</Link>
+                  </strong>
                 </p>
               </Item.Content>
             </Item>
@@ -41,13 +43,25 @@ const EventDetailedHeader = ({event}) => {
         </Segment>
       </Segment>
 
-      <Segment attached="bottom">
-        <Button>Cancel My Place</Button>
-        <Button color="teal">JOIN THIS EVENT</Button>
-
+      <Segment attached="bottom" clearing>
+        {!isHost &&
+        <React.Fragment>
+          {
+            isGoing ?
+              (
+                <Button onClick={() => cancelSignUpToEvent(event)}>Resign to participate</Button>
+              ) : (
+                <Button onClick={() => signUpToEvent(event)} color="teal">JOIN THIS EVENT</Button>
+              )
+          }
+        </React.Fragment>
+        }
+        {isHost &&
         <Button as={Link} to={`/manage/${event.id}`} color="orange" floated="right">
           Manage Event
         </Button>
+        }
+
       </Segment>
     </Segment.Group>
   );

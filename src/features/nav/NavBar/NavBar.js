@@ -59,7 +59,7 @@ class NavBar extends React.Component {
           }
           {authenticated ?
             (
-              <SignedInMenu signOut={this.handleSignOut} profile={profile} />
+              <SignedInMenu auth={auth} signOut={this.handleSignOut} profile={profile} />
             ) : (
               <SignedOutMenu signIn={this.handleSignIn} register={this.handleRegister} />
               )}

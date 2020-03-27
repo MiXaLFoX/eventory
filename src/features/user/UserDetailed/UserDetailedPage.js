@@ -17,11 +17,12 @@ const mapState = (state, ownProps) => {
   let profile = {};
 
   if (ownProps.match.params.id === state.auth.uid) {
-    profile = state.firebase.profile
+    profile = state.firebase.profile;
   } else {
     profile = !isEmpty(state.firestore.ordered.profile) && state.firestore.ordered.profile[0];
     userUid = ownProps.match.params.id;
   }
+
   return {
     profile,
     userUid,
@@ -37,7 +38,7 @@ class UserDetailedPage extends Component {
     const {profile, photos, auth, match, requesting} = this.props;
     const isCurrentUser = auth.uid === match.params.id;
     const loading = Object.values(requesting).some(a => a === true);
-    if (loading) return <SpinnerComponent/>
+    if (loading) return <SpinnerComponent/>;
     return (
       <Grid>
         <UserDetailedHeader profile={profile}/>

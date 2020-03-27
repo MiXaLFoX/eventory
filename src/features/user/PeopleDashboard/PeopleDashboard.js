@@ -3,7 +3,7 @@ import React from 'react';
 const PeopleDashboard = () => {
   return (
     <div>
-      <h1>People Dashboard</h1>
+      <h1>the page is under construction</h1>
     </div>
   );
 };

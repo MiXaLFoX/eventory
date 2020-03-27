@@ -62,8 +62,8 @@ export const getEventsForDashboard = (lastEvent) =>
       let query;
 
       lastEvent ?
-        query = eventsRef./*where('date', '>=', now).*/orderBy('date').startAfter(startAfter).limit(2) :
-        query = eventsRef./*where('date', '>=', now).*/orderBy('date').limit(2);
+        query = eventsRef.orderBy('date').startAfter(startAfter).limit(2) :
+        query = eventsRef.orderBy('date').limit(2);
 
       let querySnap = await query.get();
 

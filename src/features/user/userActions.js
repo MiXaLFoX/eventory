@@ -52,12 +52,12 @@ export const deletePhoto = (photo) =>
     const firestore = getFirestore();
     const user = firebase.auth().currentUser;
     try {
-      await firebase.deleteFile(`${user.uid}/user_images/${photo.name}`);
+      await firebase.deleteFile(`${user.uid}/user_images/${photo.id}`);
       await firestore.delete({
         collection: 'users',
         doc: user.uid,
-        subcollections: [{collection: 'photos', doc: photo.uid}]
-      })
+        subcollections: [{collection: 'photos', doc: photo.id}]
+      });
     } catch (error) {
       console.log(error);
       throw new Error('There is a problem with deleting the photo')
